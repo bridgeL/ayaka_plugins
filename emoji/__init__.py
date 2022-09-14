@@ -1,8 +1,6 @@
-import json
 from ayaka.lazy import *
-
-path = create_file("data", "plugins", "emoji.json", default="{}")
-emojiBin: dict = json.load(path.open("r", encoding="utf8"))
+from ..utils.file import LocalPath
+emojiBin = LocalPath(__file__).load_json("emoji")
 
 app = AyakaApp('emoji查询', only_group=True, no_storage=True)
 app.help = "[#e <参数>] 简单查询emoji\n[#emoji <参数>] 详细查询emoji"

@@ -1,17 +1,15 @@
 import json
-from pathlib import Path
 import re
 from random import randint
 from typing import Union
 from ayaka.lazy import beauty_save
-
+from ..utils.file import LocalPath
 from ..utils.uuid import uuid8
 
 
 class Corpus:
-    def __init__(self, path: Path):
-        # 从本地读取语料库
-        self.path = path
+    def __init__(self):
+        self.path = LocalPath(__file__).get_json_path("talk")
 
     def load(self):
         with self.path.open("r", encoding="utf8") as f:

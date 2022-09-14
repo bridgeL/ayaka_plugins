@@ -1,27 +1,19 @@
-from pathlib import Path
 import re
-import json
 from random import randint
 from pypinyin import lazy_pinyin
 
 from ayaka.lazy import *
 from ..bag import add_money
 from ..utils.name import get_name, get_uid_name
+from ..utils.file import LocalPath
 
 app = AyakaApp("成语接龙")
 app.help = "成语接龙（肯定是你输\n[#cy <参数>] 查询成语\n[什么是 <参数>] 查询成语\n[<参数> 是什么] 查询成语\n[#成语统计] 查询历史记录"
 
-
-def load(name: str):
-    path = Path(__file__).parent.joinpath(f"{name}.json")
-    data: dict = json.load(path.open("r", encoding="utf8"))
-    return data
-
-
-whole_bin = load("meaning")
+path = LocalPath(__file__)
+search_bin: dict = path.load_json("search")
+whole_bin: dict = path.load_json("meaning")
 chengyu_list = list(whole_bin.keys())
-
-search_bin = load("search")
 
 
 def check(msg):
