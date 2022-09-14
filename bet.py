@@ -1,6 +1,7 @@
 from asyncio import sleep
 from random import randint
 from typing import List
+
 from ayaka.lazy import *
 from .bag import add_money
 from .utils.name import get_name

@@ -9,9 +9,9 @@ from ..utils.uuid import uuid8
 
 
 class Corpus:
-    def __init__(self, path: str):
+    def __init__(self, path: Path):
         # 从本地读取语料库
-        self.path = Path(path)
+        self.path = path
 
     def load(self):
         with self.path.open("r", encoding="utf8") as f:

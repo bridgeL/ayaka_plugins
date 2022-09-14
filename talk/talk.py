@@ -1,7 +1,9 @@
+from pathlib import Path
 from ayaka.lazy import *
 from .corpus import Corpus
 
-corpus = Corpus('data/plugins/talk.json')
+path = Path(__file__).parent.joinpath("talk.json")
+corpus = Corpus(path)
 
 app = AyakaApp('talk', no_storage=True)
 app.help = "命令式傻瓜聊天机器人"
