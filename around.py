@@ -1,7 +1,13 @@
 from ayaka.lazy import *
 
-app = AyakaApp('around', no_storage=True)
-app.help = "环绕字，例如：\n#81 ab C\n\n生成\nababab\nabCab\nababab"
+app = AyakaApp('环绕字', no_storage=True)
+app.help = '''生成环绕字，例如：
+#81 ab
+
+生成
+aaa
+aba
+aaa'''
 
 
 @app.on_command(['around', '81', '环绕', '环绕字'])

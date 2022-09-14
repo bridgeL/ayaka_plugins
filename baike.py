@@ -4,7 +4,7 @@
 from urllib.parse import quote
 from ayaka.lazy import *
 
-app = AyakaApp("百科链接拼凑", no_storage=True)
+app = AyakaApp("百科链接", no_storage=True)
 app.help = "发送[#baike <name>] 给出对应的百科网址"
 
 

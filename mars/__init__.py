@@ -1,9 +1,7 @@
-import json
 from ayaka.lazy import *
+from ..utils.file import LocalPath
 
-path = create_file("data", "plugins", "mars.json", default="{}")
-mars_data: dict = json.load(path.open("r", encoding="utf8"))
-
+mars_data = LocalPath(__file__).load_json("mars")
 charPYStr: str = mars_data['charPYStr']
 ftPYStr: str = mars_data['ftPYStr']
 

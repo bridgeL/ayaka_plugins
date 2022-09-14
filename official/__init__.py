@@ -1,12 +1,11 @@
-import json
 from random import randint
 from ayaka.lazy import *
+from ..utils.file import LocalPath
 
 app = AyakaApp(name="公文体", only_group=True, no_storage=True)
 app.help = "公文体 [#公文体 <数字>]"
 
-path = create_file("data", "plugins", "official.json", default="{}")
-data: dict = json.load(path.open("r", encoding="utf8"))
+data:dict = LocalPath(__file__).load_json("official")
 
 data_bin = []
 for v in data.values():

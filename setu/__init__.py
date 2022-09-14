@@ -1,12 +1,13 @@
 import sys
 from ayaka.lazy import *
 from pydantic import BaseModel
-from .utils.spider import Spider
+from ..utils.spider import Spider
 
 app = AyakaApp("setu", only_group=True, no_storage=True)
 app.help = '来张涩图\n[#setu] 可以色色'
 
-create_path("data", "plugins", "setu")
+create_path("data", "setu")
+
 
 class SetuData(BaseModel):
     pid: int = 0
@@ -64,7 +65,7 @@ async def handle():
             res = Spider(data.url).get_res()
 
         res = res.content
-        open(f'data/plugins/setu/{data.name}', 'wb').write(res)
+        open(f'data/setu/{data.name}', 'wb').write(res)
         await app.send(Message(MessageSegment.image(res)))
     except:
         await app.send('setu 太涩了，发不出来(')
