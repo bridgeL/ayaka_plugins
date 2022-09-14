@@ -1,4 +1,4 @@
-from ayaka.lazy import *
+from ayaka import *
 import requests
 
 app = AyakaApp('缩写翻译', no_storage=True)

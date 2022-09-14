@@ -1,4 +1,4 @@
-from ayaka.lazy import *
+from ayaka import *
 from .bag import get_uid_name
 
 app = AyakaApp("catch", only_group=True, no_storage=True)

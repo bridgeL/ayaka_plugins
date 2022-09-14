@@ -2,7 +2,7 @@ from asyncio import sleep
 from random import randint
 from typing import List
 
-from ayaka.lazy import *
+from ayaka import *
 from .bag import add_money
 from .utils.name import get_name
 from .utils.time import get_time_s

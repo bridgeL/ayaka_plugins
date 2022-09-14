@@ -1,5 +1,5 @@
 from .model import Incan
-from ayaka.lazy import AyakaApp
+from ayaka import AyakaApp
 
 app = AyakaApp("incan", only_group=True, no_storage=True)
 

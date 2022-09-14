@@ -1,4 +1,4 @@
-from ayaka.lazy import *
+from ayaka import *
 from ..utils.file import LocalPath
 emojiBin = LocalPath(__file__).load_json("emoji")
 

@@ -1,7 +1,7 @@
 import re
 from random import randint
 from pypinyin import lazy_pinyin
-from ayaka.lazy import *
+from ayaka import *
 from ..utils.file import LocalPath
 
 path = LocalPath(__file__)

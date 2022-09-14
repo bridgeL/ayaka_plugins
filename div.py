@@ -3,7 +3,7 @@
 '''
 import json
 from urllib.parse import unquote
-from ayaka.lazy import *
+from ayaka import *
 
 app = AyakaApp("分割网址", no_storage=True)
 app.help = "[#div <url>] 分割网址和参数"

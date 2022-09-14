@@ -1,5 +1,5 @@
 from typing import List
-from ayaka.lazy import *
+from ayaka import *
 from .utils.spider import Spider
 
 app = AyakaApp("html文本抓取", only_group=True, no_storage=True)

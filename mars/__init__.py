@@ -1,4 +1,4 @@
-from ayaka.lazy import *
+from ayaka import *
 from ..utils.file import LocalPath
 
 mars_data = LocalPath(__file__).load_json("mars")

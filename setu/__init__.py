@@ -1,5 +1,5 @@
 import sys
-from ayaka.lazy import *
+from ayaka import *
 from pydantic import BaseModel
 from ..utils.spider import Spider
 

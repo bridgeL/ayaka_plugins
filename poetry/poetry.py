@@ -1,5 +1,5 @@
 import json
-from ayaka.lazy import beauty_save
+from ayaka import beauty_save
 from ..utils.time import get_time_s
 from ..utils.file import LocalPath
 

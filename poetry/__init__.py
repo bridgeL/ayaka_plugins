@@ -1,6 +1,6 @@
 import re
 from asyncio import sleep
-from ayaka.lazy import *
+from ayaka import *
 from .poetry import Poetry
 
 poetry = Poetry()

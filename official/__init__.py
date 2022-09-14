@@ -1,5 +1,5 @@
 from random import randint
-from ayaka.lazy import *
+from ayaka import *
 from ..utils.file import LocalPath
 
 app = AyakaApp(name="公文体", only_group=True, no_storage=True)

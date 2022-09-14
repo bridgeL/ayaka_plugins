@@ -2,7 +2,7 @@ import json
 import re
 from random import randint
 from typing import Union
-from ayaka.lazy import beauty_save
+from ayaka import beauty_save
 from ..utils.file import LocalPath
 from ..utils.uuid import uuid8
 

@@ -2,7 +2,7 @@ import re
 from random import randint
 from pypinyin import lazy_pinyin
 
-from ayaka.lazy import *
+from ayaka import *
 from ..bag import add_money
 from ..utils.name import get_name, get_uid_name
 from ..utils.file import LocalPath

@@ -1,4 +1,4 @@
-from ayaka.lazy import *
+from ayaka import *
 from .corpus import Corpus
 
 corpus = Corpus()

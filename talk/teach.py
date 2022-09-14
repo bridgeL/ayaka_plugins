@@ -1,6 +1,6 @@
 '''[待完成]写的很丑'''
 
-from ayaka.lazy import *
+from ayaka import *
 from .talk import corpus
 
 

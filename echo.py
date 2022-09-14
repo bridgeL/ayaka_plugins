@@ -1,4 +1,4 @@
-from ayaka.lazy import *
+from ayaka import *
 
 app = AyakaApp("echo", no_storage=True)
 app.help = {

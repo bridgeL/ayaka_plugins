@@ -1,4 +1,4 @@
-from ayaka.lazy import *
+from ayaka import *
 from .utils.time import get_time_i, time_i2s
 
 

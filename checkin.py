@@ -1,7 +1,7 @@
 '''
     签到模块
 '''
-from ayaka.lazy import *
+from ayaka import *
 from .utils.time import get_time_s
 
 # 跨插件引用

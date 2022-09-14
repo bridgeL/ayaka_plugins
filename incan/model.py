@@ -3,7 +3,7 @@
 from random import randint, choice, shuffle
 from enum import Enum, unique
 from asyncio import sleep
-from ayaka.lazy import *
+from ayaka import *
 
 
 class Incan:

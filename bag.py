@@ -1,7 +1,7 @@
 '''
     背包
 '''
-from ayaka.lazy import *
+from ayaka import *
 from .utils.name import get_name, get_uid_name
 
 app = AyakaApp('bag', only_group=True)

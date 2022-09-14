@@ -1,5 +1,5 @@
 import re
-from ayaka.lazy import *
+from ayaka import *
 
 
 def get_name(event: GroupMessageEvent):
