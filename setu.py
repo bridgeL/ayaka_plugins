@@ -1,7 +1,7 @@
 import sys
 from ayaka import *
 from pydantic import BaseModel
-from ..utils.spider import Spider
+from .utils.spider import Spider
 
 app = AyakaApp("setu", only_group=True, no_storage=True)
 app.help = '来张涩图\n[#setu] 可以色色'
