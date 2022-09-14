@@ -4,7 +4,7 @@ from ayaka import *
 from .talk import corpus
 
 
-app = AyakaApp('teach', no_storage=True)
+app = AyakaApp('teach')
 app.help = {
     "介绍": "教机器人说话",
     'menu': "[#add] 添加\n[#change] 修改",

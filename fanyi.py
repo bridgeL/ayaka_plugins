@@ -1,7 +1,7 @@
 from ayaka import *
 import requests
 
-app = AyakaApp('缩写翻译', no_storage=True)
+app = AyakaApp('缩写翻译')
 app.help = "[#fy <参数>] 缩写翻译"
 
 

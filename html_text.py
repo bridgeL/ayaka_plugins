@@ -2,7 +2,7 @@ from typing import List
 from ayaka import *
 from .utils.spider import Spider
 
-app = AyakaApp("html文本抓取", only_group=True, no_storage=True)
+app = AyakaApp("html文本抓取", only_group=True)
 app.help = "抓取html页面的文本内容 [#ht <url>]"
 
 sp = Spider()

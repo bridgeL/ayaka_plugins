@@ -2,7 +2,7 @@ from random import randint
 from ayaka import *
 from ..utils.file import LocalPath
 
-app = AyakaApp(name="公文体", only_group=True, no_storage=True)
+app = AyakaApp(name="公文体", only_group=True)
 app.help = "公文体 [#公文体 <数字>]"
 
 data:dict = LocalPath(__file__).load_json("official")

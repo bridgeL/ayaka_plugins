@@ -39,7 +39,7 @@ def mars_decode(cc):
     return str
 
 
-app = AyakaApp('mars', no_storage=True)
+app = AyakaApp('mars')
 app.help = "火星文转换器\n[#mars <文字>]自动分析转换方向"
 
 

@@ -1,6 +1,6 @@
 from ayaka import *
 
-app = AyakaApp("echo", no_storage=True)
+app = AyakaApp("echo")
 app.help = {
     "介绍":"复读只因",
     "run":"echo正在运行~\n使用[#exit] 退出"

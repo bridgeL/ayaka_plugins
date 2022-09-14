@@ -1,7 +1,7 @@
 from random import randint
 from ayaka import *
 
-app = AyakaApp("yydz", no_storage=True)
+app = AyakaApp("yydz")
 app.help = "选择困难了吗？让丁真来帮你吧\n[#yydz <a> <b> <c>]"
 
 

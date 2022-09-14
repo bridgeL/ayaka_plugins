@@ -5,7 +5,7 @@ from .poetry import Poetry
 
 poetry = Poetry()
 
-app = AyakaApp('poetry', only_group=True, no_storage=True)
+app = AyakaApp('poetry', only_group=True)
 app.help = {
     "介绍": "诗歌",
     "menu": "[#add] 添加一首诗\n[#list] 诗歌列表\n[<诗名>] 从上次中断处念诗\n[<诗名> <数字>] 从指定行开始念诗",

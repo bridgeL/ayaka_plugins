@@ -1,7 +1,7 @@
 from .model import Incan
 from ayaka import AyakaApp
 
-app = AyakaApp("incan", only_group=True, no_storage=True)
+app = AyakaApp("incan", only_group=True)
 
 
 @app.on_command(["incan", "印加"])

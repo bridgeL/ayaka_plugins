@@ -1,7 +1,7 @@
 from ayaka import *
 from .bag import get_uid_name
 
-app = AyakaApp("catch", only_group=True, no_storage=True)
+app = AyakaApp("catch", only_group=True)
 app.help = "强调群里某人的发言 [#catch @xx]"
 
 

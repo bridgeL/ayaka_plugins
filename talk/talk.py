@@ -3,7 +3,7 @@ from .corpus import Corpus
 
 corpus = Corpus()
 
-app = AyakaApp('talk', no_storage=True)
+app = AyakaApp('talk')
 app.help = "命令式傻瓜聊天机器人"
 
 

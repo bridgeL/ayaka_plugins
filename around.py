@@ -1,6 +1,6 @@
 from ayaka import *
 
-app = AyakaApp('环绕字', no_storage=True)
+app = AyakaApp('环绕字')
 app.help = '''生成环绕字，例如：
 #81 ab
 

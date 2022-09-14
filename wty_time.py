@@ -2,7 +2,7 @@ from ayaka import *
 from .utils.time import get_time_i, time_i2s
 
 
-app = AyakaApp('wty-time', only_group=True, no_storage=True)
+app = AyakaApp('wty-time', only_group=True)
 app.help = "wty现在几点了\n[#wty]"
 
 

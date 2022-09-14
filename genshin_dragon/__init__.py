@@ -11,7 +11,7 @@ not_zh = re.compile(r'[^\u4e00-\u9fa5]*')
 words = path.load_json('bin')
 search_bin = path.load_json('search')
 
-app = AyakaApp("原神接龙", only_group=True, no_storage=True)
+app = AyakaApp("原神接龙", only_group=True)
 app.help = "原神接龙，关键词中了就行"
 
 

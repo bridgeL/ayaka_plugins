@@ -2,7 +2,7 @@ from ayaka import *
 from ..utils.file import LocalPath
 emojiBin = LocalPath(__file__).load_json("emoji")
 
-app = AyakaApp('emoji查询', only_group=True, no_storage=True)
+app = AyakaApp('emoji查询', only_group=True)
 app.help = "[#e <参数>] 简单查询emoji\n[#emoji <参数>] 详细查询emoji"
 
 

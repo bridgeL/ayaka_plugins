@@ -5,7 +5,7 @@ import json
 from .utils import BaseJson
 from ayaka import *
 
-app = AyakaApp("分析卡片", only_group=True, no_storage=True)
+app = AyakaApp("分析卡片", only_group=True)
 app.help = "分析上一个转发的卡片 [#card]"
 
 
