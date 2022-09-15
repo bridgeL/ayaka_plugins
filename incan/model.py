@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from random import randint, choice, shuffle
-from enum import Enum, unique
+from enum import Enum
 from asyncio import sleep
 from typing import List
 from ayaka import *
@@ -346,7 +346,6 @@ class Incan:
         return True
 
 
-@unique
 class IncanStatus(Enum):
     READY = 0,
     INQUEUE = 1,
