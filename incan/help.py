@@ -15,12 +15,6 @@ ruledoc = '''1. 前进，玩家翻开一张卡牌
 5. 在前进时遇到怪物，第二次遇到将被驱逐出神殿，丢失此轮在神殿中获得的一切收益
 6. 前两个被带出的遗物计5分，后3个被带出的遗物计10分'''
 
-
-@app.on_command(["help", "-h", "--help"], ["inqueue", "gaming"])
-async def handle():
-    await app.send(app.help)
-
-
 @app.on_command(['rule', 'document', 'doc'], ["inqueue", "gaming"])
 async def handle():
     await app.send(ruledoc)

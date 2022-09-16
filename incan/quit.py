@@ -16,6 +16,6 @@ async def exit_incan(app: AyakaApp, model: Incan):
     await app.send(info)
 
 
-@app.on_command(['exit', 'quit'], ["inqueue", "gaming"])
+@app.on_command(['exit', 'quit', "退出"], ["inqueue", "gaming"])
 async def handle():
     await exit_incan(app, app.cache.model)
