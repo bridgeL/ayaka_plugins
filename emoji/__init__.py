@@ -1,3 +1,4 @@
+from typing import List
 from ayaka import *
 from ..utils.file import LocalPath
 emojiBin = LocalPath(__file__).load_json("emoji")
@@ -13,9 +14,12 @@ async def search(app: AyakaApp):
 
     arg = app.args[0]
 
-    def relate(tags):
-        tag_all = ' '.join(tags)
-        return tag_all.find(arg) >= 0
+    def relate(tags: List[str]):
+        for tag in tags:
+            ss = tag.split("_")
+            for s in ss:
+                if s.startswith(arg):
+                    return True
 
     es = [e for e in emojiBin if relate(emojiBin[e])]
 
