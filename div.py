@@ -17,12 +17,11 @@ async def div_url_handle():
         return
 
     api, params = div_url(app.args[0])
-
-    website, page = api.rsplit("/", maxsplit=1)
-
     await app.send(api)
-    await app.send(website)
-    await app.send(unquote(page))
 
     if params:
         await app.send(json.dumps(params, ensure_ascii=False))
+
+    website, page = api.rsplit("/", maxsplit=1)
+    await app.send(unquote(page))
+    
