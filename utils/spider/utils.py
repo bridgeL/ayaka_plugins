@@ -1,93 +1,21 @@
 ''' 工具包 '''
-import json
 from random import choice
-from pathlib import Path
 import unicodedata
 from urllib.parse import unquote
-from datetime import datetime
-from colorama import Fore
-import colorama
-colorama.init(autoreset=True)
-
-
-class Logger:
-    color_dict = {
-        "_DEBUG_": Fore.CYAN,
-        "SUCCESS": Fore.GREEN,
-        "WARNING": Fore.YELLOW,
-        "ERROR": Fore.LIGHTRED_EX,
-    }
-
-    def __init__(self, path=None) -> None:
-        self.path = Path(path) if path else None
-
-    def base_print(self, rank: str, *args):
-        time_s = get_time_s()
-
-        if self.path:
-            with self.path.open("a+", encoding="utf8") as f:
-                args_s = " ".join(str(arg) for arg in args)
-                text = f"{time_s} [{rank}] {args_s}\n"
-                f.write(text)
-
-        # time
-        print(Fore.GREEN + time_s + Fore.RESET, end=" ")
-
-        # rank
-        color = self.color_dict.get(rank, Fore.RESET)
-        print("[" + color + rank + Fore.RESET + "]", end=" ")
-
-        # args
-        for arg in args:
-            print(str(arg), end=" ")
-        print()
-
-    def info(self, *args):
-        self.base_print("INFO", *args)
-
-    def success(self, *args):
-        self.base_print("SUCCESS", *args)
-
-    def warning(self, *args):
-        self.base_print("WARNING", *args)
-
-    def error(self, *args):
-        self.base_print("ERROR", *args)
-
-    def debug(self, *args):
-        self.base_print("_DEBUG_", *args)
-
-
-log = Logger()
-
-
-def get_time_s(time_i=-1, format="%Y/%m/%d %H:%M:%S"):
-    if time_i < 0:
-        return datetime.now().strftime(format)
-    return datetime.fromtimestamp(time_i).strftime(format)
-
-
-def get_time_i(time_s: str = '', format: str = r'%Y/%m/%d %H:%M:%S'):
-    '''
-        - time_s存在时，转换time_s为对应time_i，time_s必须完整包含时间、日期
-        - time_s缺失时，则返回当前时间日期
-    '''
-    if not time_s:
-        return int(datetime.now().timestamp())
-    return int(datetime.strptime(time_s, format).timestamp())
 
 
 def div_url(url: str):
     '''输入网址，自动分离简单api与参数对'''
+
     if '?' not in url:
         return url, {}
 
     api, params_str = url.split('?', maxsplit=1)
-
-    items = [pair.split("=") for pair in params_str.split('&') if pair]
+    items = params_str.split('&')
+    pairs = [item.split("=") for item in items if item]
     # 不能提前unquote，因为一些参数内可能包含了=#?%等符号
     # 所以只有到最后一步才可以转义回去
-    params = {item[0]: unquote(item[1]) for item in items}
+    params = {k: unquote(v) for k, v in pairs}
 
     return api, params
 
@@ -145,36 +73,3 @@ USER_AGENT_LIST = [
 
 def get_user_agent():
     return choice(USER_AGENT_LIST)
-
-
-class Saver:
-    def __init__(self, *path: str, mode="a+") -> None:
-        self.path = Path(*path)
-        if not self.path.parent.exists():
-            self.path.parent.mkdir(parents=True)
-        self.mode = mode
-
-    @classmethod
-    def create_saver(self, path: str, suffix=".json"):
-        '''默认依据时间日期创建a+模式的saver'''
-        if not path:
-            return None
-
-        date = get_time_s(format="%Y-%m-%d")
-        file = get_time_s(format="%H-%M-%S") + suffix
-        return Saver("data", path, date, file)
-
-    def save(self, data):
-        with self.path.open(self.mode, encoding="utf8") as f:
-            s = json.dumps(data, ensure_ascii=False)
-            f.write(s + "\n")
-
-    def save_text(self, text: str):
-        with self.path.open(self.mode, encoding="utf8") as f:
-            f.write(text + "\n")
-
-    def save_list(self, iterable) -> None:
-        with self.path.open(self.mode, encoding="utf8") as f:
-            for data in iterable:
-                s = json.dumps(data, ensure_ascii=False)
-                f.write(s + "\n")
