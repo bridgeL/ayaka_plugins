@@ -26,17 +26,17 @@ def search(app: AyakaApp):
 
 @app.on_command('e')
 async def emoji():
-    es = await search(app)
+    es = search(app)
     if es:
         await app.bot.send_group_forward_msg(app.event.group_id, es)
 
 
 @app.on_command('emoji')
 async def emoji():
-    es = await search(app)
+    es = search(app)
     if not es:
         await app.send('没有相关结果')
         return
-        
+
     items = [f"{e} 标签\n" + "\n".join(emojiBin[e]) for e in es]
     await app.bot.send_group_forward_msg(app.event.group_id, items)
