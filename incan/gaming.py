@@ -98,7 +98,8 @@ async def Clearing(model: Incan):
 
 
 async def DoRetreat(model: Incan):
-    runaways = [uid for uid in model.members if model.members[uid]['status'] == 2]
+    runaways = [
+        uid for uid in model.members if model.members[uid]['status'] == 2]
     num = len(runaways)
     if num == 0:
         return
@@ -121,8 +122,10 @@ async def send_info(turn, result, tips_giver, tips):
 
 
 async def Gaming(model: Incan):
-    if not model.CheckTurnEnd():
-        return
+    # CheckTurnEnd
+    for uid in model.members:
+        if model.members[uid]['status'] == 0:
+            return
 
     model.turn += 1
     await DoRetreat(model)
@@ -132,7 +135,8 @@ async def Gaming(model: Incan):
         elif model.members[uid]['status'] == 2:
             model.members[uid]['status'] = 3
 
-    adventures = [uid for uid in model.members if model.members[uid]['status'] == 0]
+    adventures = [
+        uid for uid in model.members if model.members[uid]['status'] == 0]
 
     if adventures:
         card = None

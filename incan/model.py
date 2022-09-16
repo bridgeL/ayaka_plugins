@@ -17,28 +17,6 @@ class Incan:
         self.turn = 0
         self.temples = Deck('Temple')
 
-    def GetTeamInfo(self):
-        return f'队伍玩家有：<{">, <".join([self.members[uid]["name"] for uid in self.members])}>'
-
-    def GetGameStatus(self):
-        status = '角色状态：'
-        for uid in self.members:
-            state = '还在迷茫中' if self.members[uid]['status'] == 0 else None
-            if state is None:
-                state = '放弃冒险了' if self.members[uid]['status'] == 3 else '决定好了'
-            status += f'<{self.members[uid]["name"]}> {state}\n'
-        if self.monsters:
-            status += f'警告：\n<{">, <".join(self.monsters)}>'
-        else:
-            status += f'目前没有收到任何警告'
-        return status
-
-    def CheckTurnEnd(self):
-        for uid in self.members:
-            if self.members[uid]['status'] == 0:
-                return False
-        return True
-
 
 class Card:
     class Type(Enum):
