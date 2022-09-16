@@ -1,6 +1,5 @@
-from .model import Incan, Player
+from .model import Incan
 from .app import app
-from .utils import get_sender
 
 greeting = '''欢迎使用印加宝藏2.0
 输入[join]加入游戏
@@ -29,11 +28,11 @@ treasures = {
 }
 
 
-def InitPlayer(self: Incan, player: Player):
+def InitPlayer(self: Incan, uid, name):
     from copy import deepcopy
-    self.members[player.uid] = {
+    self.members[uid] = {
         'status': 0,
-        'name': player.name,
+        'name': name,
         'treasures': treasures,
         'income': deepcopy(treasures)
     }
@@ -50,9 +49,9 @@ async def game_entrance():
     # 缓存
     app.cache.model = model
 
-    # 获取sender
-    sender = get_sender(app)
+    name = app.event.sender.card if app.event.sender.card else app.event.sender.nickname
+    uid = app.event.user_id
 
     # 操作
-    InitPlayer(model, sender)
+    InitPlayer(model, uid, name)
     await app.send(greeting)

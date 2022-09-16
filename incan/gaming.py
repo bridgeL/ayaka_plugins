@@ -1,6 +1,5 @@
 from .model import Incan, Card, choice, Deck
 from .app import app
-from .utils import get_sender
 from .quit import exit_incan
 
 warnings = [
@@ -176,9 +175,9 @@ async def Gaming(model: Incan):
 @app.on_command(['go', 'forward'], "gaming")
 async def handle():
     model: Incan = app.cache.model
-    sender = get_sender(app)
-    if model.members[sender.uid]['status'] == 0:
-        model.members[sender.uid]['status'] = 1
+    uid = app.event.user_id
+    if model.members[uid]['status'] == 0:
+        model.members[uid]['status'] = 1
     if await Gaming(model):
         await exit_incan(app, model)
 
@@ -186,8 +185,8 @@ async def handle():
 @app.on_command(['back', 'retreat', 'escape'], "gaming")
 async def handle():
     model: Incan = app.cache.model
-    sender = get_sender(app)
-    if model.members[sender.uid]['status'] == 0:
-        model.members[sender.uid]['status'] = 2
+    uid = app.event.user_id
+    if model.members[uid]['status'] == 0:
+        model.members[uid]['status'] = 2
     if await Gaming(model):
         await exit_incan(app, model)

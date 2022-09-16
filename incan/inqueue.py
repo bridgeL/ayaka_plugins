@@ -1,6 +1,5 @@
 from .model import Incan
 from .app import app
-from .utils import get_sender
 from .ready import InitPlayer
 
 
@@ -22,10 +21,11 @@ async def handle():
 @app.on_command("join", "inqueue")
 async def handle():
     model: Incan = app.cache.model
-    sender = get_sender(app)
+    name = app.event.sender.card if app.event.sender.card else app.event.sender.nickname
+    uid = app.event.user_id
 
-    if sender.uid in model.members:
-        await app.send(f'{sender.name}已经在小队中了，无需重复加入')
+    if uid in model.members:
+        await app.send(f'{name}已经在小队中了，无需重复加入')
     else:
-        InitPlayer(model, sender)
-        await app.send(f'<{sender.name}>加入了小队，当前小队共{len(model.members)}人。')
+        InitPlayer(model, uid, name)
+        await app.send(f'<{name}>加入了小队，当前小队共{len(model.members)}人。')

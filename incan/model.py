@@ -5,12 +5,6 @@ from enum import Enum
 from typing import List
 
 
-class Player:
-    def __init__(self, name, uid) -> None:
-        self.name = name
-        self.uid = uid
-
-
 class Incan:
     def __init__(self):
         self.members = {}
