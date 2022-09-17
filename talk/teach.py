@@ -24,20 +24,24 @@ async def start():
     f, info = app.start("menu")
     await app.send(info)
     if f:
-        await set_state("menu")
-
+        app.state = "menu"
+        await app.send_help()
 
 # 添加
+
+
 @app.on_command(['add', '添加'], 'menu')
 async def add_0():
     # 没有变量，正常进入下一个状态
     if len(app.args) == 0:
-        await set_state("add_title")
+        app.state = "add_title"
+        await app.send_help()
         return
 
     if len(app.args) == 1:
         app.cache.question = app.args[0]
-        await set_state("add_content")
+        app.state = "add_content"
+        await app.send_help()
         return
 
     if len(app.args) >= 2:
@@ -54,10 +58,12 @@ async def add_title():
         return
 
     app.cache.question = app.args[0]
-    await set_state("add_content")
-
+    app.state = "add_content"
+    await app.send_help()
 
 # 输入回答
+
+
 @app.on_text('add_content')
 async def add_content():
     if not app.args:
@@ -73,10 +79,12 @@ async def add_content():
 @app.on_command(['exit', '退出'], ['add_title', 'add_content'])
 async def exit_add():
     await app.send(f"已取消添加")
-    await set_state("menu")
-
+    app.state = "menu"
+    await app.send_help()
 
 # 彻底退出
+
+
 @app.on_command(['exit', '退出'], 'menu')
 async def exit_menu():
     f, info = app.close()
@@ -92,7 +100,8 @@ async def change_menu():
 
     # 没有变量，正常进入下一个状态
     if len(app.args) == 0:
-        await set_state("change_input_question")
+        app.state = "change_input_question"
+        await app.send_help()
         return
 
     if len(app.args) >= 1:
@@ -137,29 +146,36 @@ async def handle():
     await app.send(ans)
 
     app.cache.id = id
-    await set_state("change_operate")
-
+    app.state = "change_operate"
+    await app.send_help()
 
 # 选择修改问题
+
+
 @app.on_command('q', 'change_operate')
 async def handle():
-    await set_state("change_update_question")
-
+    app.state = "change_update_question"
+    await app.send_help()
 
 # 选择修改回答
+
+
 @app.on_command('a', 'change_operate')
 async def handle():
-    await set_state("change_update_answer")
-
+    app.state = "change_update_answer"
+    await app.send_help()
 
 # 选择删除条目
+
+
 @app.on_command('del', 'change_operate')
 async def handle():
     id = app.cache.id
     corpus.del_item(id)
 
     await app.send("成功删除")
-    await set_state("menu")
+    app.state = "menu"
+    await app.send_help()
 
 
 # 输入新问题
@@ -178,18 +194,15 @@ async def handle():
 @app.on_command(['exit', '退出'], ['change_input_question', 'change_choose_question', 'change_operate', 'change_update_question', 'change_update_answer'])
 async def exit_change():
     await app.send(f"已取消修改")
-    await set_state("menu")
-
-
-async def set_state(state: str):
-    app.state = state
-    await app.send(app.help[state])
+    app.state = "menu"
+    await app.send_help()
 
 
 async def add_q_and_a(q: str, a: str):
     corpus.teach(q, a)
     await app.send(f"问：{q}\n答：{a}")
-    await set_state("menu")
+    app.state = "menu"
+    await app.send_help()
 
 
 async def change_q_a(q_flag: bool):
@@ -206,7 +219,8 @@ async def change_q_a(q_flag: bool):
         corpus.set_item(id, a=msg)
 
     await app.send('修改成功')
-    await set_state('menu')
+    app.state = "menu"
+    await app.send_help()
 
 
 def corpus_data_2_str(data: dict):
@@ -240,4 +254,5 @@ async def find_questions(key: str):
 
     id_list = [d["id"] for d in data]
     app.cache.id_list = id_list
-    await set_state("change_choose_question")
+    app.state = "change_choose_question"
+    await app.send_help()
