@@ -41,9 +41,9 @@ async def loop(bot: Bot):
         return
 
     weibo_id = 6198086160
+    name, containerid = get_publisher_info(weibo_id)
     while True:
         try:
-            name, containerid = get_publisher_info(weibo_id)
             cards = get_cards(weibo_id, containerid)
             for card in cards:
                 text = f"{card.date}\n\n{card.text}\n\nhttps://m.weibo.cn/status/{card.id}"
