@@ -1,6 +1,7 @@
 # 视奸6198086160的微博
 # 处于安全考虑，不开放用户编辑权限
 import asyncio
+from pathlib import Path
 from ayaka import *
 from ..utils.spider import Spider
 from .model import Card
@@ -9,7 +10,8 @@ from .model import Card
 app = AyakaApp("weibo")
 app.help = "追踪张怡然最新动态"
 
-accessor = AyakaStorage(__file__, "..", "data.json",
+
+accessor = AyakaStorage(str(Path(__file__).parent), "data.json",
                         default="{}").accessor("ids")
 sp = Spider()
 
@@ -39,18 +41,17 @@ async def loop(bot: Bot):
         return
 
     weibo_id = 6198086160
-    name, containerid = get_publisher_info(weibo_id)
     while True:
         try:
+            name, containerid = get_publisher_info(weibo_id)
             cards = get_cards(weibo_id, containerid)
             for card in cards:
                 text = f"{card.date}\n\n{card.text}\n\nhttps://m.weibo.cn/status/{card.id}"
                 await bot.send_group_msg(group_id=666214666, message=text)
         except:
-            pass
+            logger.exception("爬取weibo出错")
 
         await asyncio.sleep(60)
-    
 
 
 def get_cards(weibo_id, containerid):
