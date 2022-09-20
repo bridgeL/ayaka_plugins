@@ -19,7 +19,7 @@
 
 注2：一些插件间存在依赖关系，例如一些插件需要修改用户财富，则它们会调用bag.py中的一些方法。
 
-# ayakabot
+## ayakabot
 
 [ayakabot](https://github.com/bridgeL/ayaka_bot)
 
