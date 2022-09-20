@@ -1,5 +1,7 @@
 # 介绍
-通过ayaka编写的插件游戏库
+通过ayaka编写的插件游戏库，本仓库的插件需要自行下载，手动添加到你的nonebot机器人运行目录下
+
+通过pip安装、无需手动添加到nonebot目录下的ayaka插件合集请移步[ayaka-games](https://github.com/bridgeL/nonebot-plugin-ayaka-games)
 
 # 使用方法
 
