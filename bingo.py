@@ -8,7 +8,7 @@ from .bag import add_money
 from ayaka import *
 
 app = AyakaApp("bingo", only_group=True)
-app.help = "[#b 数字] 花费100金打开一张卡，当卡片练成一整行、一整列或一整条对角线时，获得nx200金的奖励\n[#bb 数字] 免费生成一张新的bingo表，默认大小为4"
+app.help = "[#b 数字] 花费100金打开一张卡，当卡片练成一整行、一整列或一整条对角线时，获得200*n金的奖励\n[#bb 数字] 免费生成一张新的bingo表，默认大小为n=4"
 
 seed(time())
 
