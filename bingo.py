@@ -68,11 +68,7 @@ class Bingo:
         info = ""
         for i in range(n):
             for j in range(n):
-                k = i*n+j
-                if self.data[k]:
-                    s = "O"
-                else:
-                    s = "X"
+                s = self.get(i*n+j)
 
                 info += f"[{s}] "
             info = info[:-1] + "\n"
