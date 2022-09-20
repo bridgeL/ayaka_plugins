@@ -78,6 +78,9 @@ class Bingo:
             info = info[:-1] + "\n"
         return info[:-1]
 
+    def get(self, i):
+        return "⚪" if self.data[i] else "❌"
+
     def get_info(self):
         n = self.n
         info = ""
@@ -86,10 +89,8 @@ class Bingo:
                 k = i*n+j
                 if not self.opened[k]:
                     s = str(k)
-                elif self.data[k]:
-                    s = "❌"
                 else:
-                    s = "⚪"
+                    s = self.get(k)
 
                 info += f"[{s}] "
             info = info[:-1] + "\n"
@@ -106,7 +107,7 @@ class Bingo:
         if self.opened[i]:
             return False, "已被翻开"
 
-        d = "⚪" if self.data[i] else "❌"
+        d = self.get(i)
         self.opened[i] = 1
 
         if self.check_win():
