@@ -1,5 +1,5 @@
 '''
-快捷跳转到百科
+bingo 小游戏
 '''
 from random import randint, seed
 from time import time
