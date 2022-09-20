@@ -87,9 +87,9 @@ class Bingo:
                 if not self.opened[k]:
                     s = str(k)
                 elif self.data[k]:
-                    s = "O"
+                    s = "❌"
                 else:
-                    s = "X"
+                    s = "⚪"
 
                 info += f"[{s}] "
             info = info[:-1] + "\n"
@@ -106,7 +106,7 @@ class Bingo:
         if self.opened[i]:
             return False, "已被翻开"
 
-        d = "O" if self.data[i] else "X"
+        d = "⚪" if self.data[i] else "❌"
         self.opened[i] = 1
 
         if self.check_win():
