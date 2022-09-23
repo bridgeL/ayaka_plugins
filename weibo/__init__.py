@@ -65,7 +65,7 @@ async def handle():
     if app.bot.self_id != "2317709898":
         return
 
-    if app.device.device_id != 666214666:
+    if app.device.device_id not in [666214666, 630625147]:
         return
 
     cards = get_cards(weibo_id, containerid)
