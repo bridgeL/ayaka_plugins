@@ -25,42 +25,50 @@ class Bingo:
         self.ok = False
         i = 0
         while True:
-            if not self.check_available():
-                self.data[i] = 1
+            paths = self.get_win_paths()
+            if len(paths) == 1:
                 break
 
+            # 回退上一操作
+            if not paths:
+                self.data[i] = 1
+
             i = randint(0, n*n-1)
+            while not self.data[i]:
+                i = randint(0, n*n-1)
+
             self.data[i] = 0
 
-    def get_win_path(self):
+    def get_win_paths(self):
         n = self.n
+
+        paths = []
 
         # 行
         for i in range(n):
             path = [i*n+j for j in range(n)]
             if all(self.data[k] for k in path):
-                return path
+                paths.append(path)
 
         # 列
         for i in range(n):
             path = [j*n+i for j in range(n)]
             if all(self.data[k] for k in path):
-                return path
+                paths.append(path)
 
         # 对角
         path = [i*n+i for i in range(n)]
         if all(self.data[k] for k in path):
-            return path
+            paths.append(path)
 
         path = [i*n+n-i-1 for i in range(n)]
         if all(self.data[k] for k in path):
-            return path
+            paths.append(path)
 
-    def check_available(self):
-        return self.get_win_path()
+        return paths
 
     def check_win(self):
-        path = self.get_win_path()
+        path = self.get_win_paths()[0]
         return all(self.opened[k] for k in path)
 
     def get_all_info(self):
@@ -129,7 +137,8 @@ async def handle():
     else:
         bingo.n = n
         bingo.build()
-    await app.send(bingo.get_info())
+    # await app.send(bingo.get_info())
+    await app.send(bingo.get_all_info())
 
 
 @ app.on_command(["bingo", "b"])
