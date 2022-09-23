@@ -137,8 +137,8 @@ async def handle():
     else:
         bingo.n = n
         bingo.build()
-    # await app.send(bingo.get_info())
-    await app.send(bingo.get_all_info())
+    await app.send(bingo.get_info())
+    # await app.send(bingo.get_all_info())
 
 
 @ app.on_command(["bingo", "b"])
