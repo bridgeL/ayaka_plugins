@@ -1,5 +1,6 @@
 # 视奸6198086160的微博
 # 处于安全考虑，不开放用户编辑权限
+from pathlib import Path
 from ayaka import *
 from ..utils.spider import Spider
 from .model import Card
@@ -8,7 +9,7 @@ from .model import Card
 app = AyakaApp("weibo")
 app.help = "追踪张怡然最新动态"
 
-accessor = AyakaStorage(__file__, "..", "data.json",
+accessor = AyakaStorage(Path(__file__).parent, "data.json",
                         default="{}").accessor("ids")
 sp = Spider()
 
