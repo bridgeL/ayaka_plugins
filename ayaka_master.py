@@ -1,4 +1,5 @@
-from ayaka import AyakaApp, app_list
+from ayaka import AyakaApp
+from ayaka.ayaka import app_list
 
 app = AyakaApp("ayaka_master")
 app.help = '''ayaka综合管理模块
