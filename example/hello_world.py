@@ -47,7 +47,7 @@ async def hit():
 
 @app.on_state_command("hit", "sun")
 async def hit():
-    await app.send("bag bang!")
+    await app.send("big bang!")
 
 
 # 跳转状态

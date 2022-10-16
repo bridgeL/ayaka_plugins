@@ -23,6 +23,9 @@ app.help = {
 # 桌面状态下
 @app.on_command("echo")
 async def app_entrance():
+    # 输入参数则复读参数（无状态响应
+    # > #echo hihi
+    # < hihi 
     if app.args:
         await app.send(" ".join(str(arg) for arg in app.args))
         return
