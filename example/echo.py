@@ -25,9 +25,9 @@ app.help = {
 async def app_entrance():
     # 输入参数则复读参数（无状态响应
     # > #echo hihi
-    # < hihi 
-    if app.args:
-        await app.send(" ".join(str(arg) for arg in app.args))
+    # < hihi
+    if app.arg:
+        await app.send(app.arg)
         return
 
     # 没有输入参数则运行该应用

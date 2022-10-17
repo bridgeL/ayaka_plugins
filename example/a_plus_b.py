@@ -8,13 +8,13 @@ app = AyakaApp("a-plus-b")
 
 @app.on_command("set_a")
 async def set_a():
-    app.cache.a = int(str(app.args[0])) if app.args else 0
+    app.cache.a = int(str(app.arg)) if app.arg else 0
     await app.send(app.cache.a)
 
 
 @app.on_command("set_b")
 async def set_b():
-    app.cache.b = int(str(app.args[0])) if app.args else 0
+    app.cache.b = int(str(app.arg)) if app.arg else 0
     await app.send(app.cache.b)
 
 
