@@ -1,6 +1,8 @@
 # ayaka 衍生插件库
 
-适配0.3.x [ayaka插件](https://github.com/bridgeL/nonebot-plugin-ayaka)
+本仓库插件均可在安装了[ayaka插件(0.3.x)](https://github.com/bridgeL/nonebot-plugin-ayaka)后的nonebot机器人上运行
+
+本仓库插件均可在[ayakaBot(0.2.x)](https://github.com/bridgeL/ayaka_bot)机器人上运行
 
 # 目录
 标星的为实验性质插件，不保证可用性
