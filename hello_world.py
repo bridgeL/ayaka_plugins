@@ -1,61 +1,77 @@
-
 '''
-    ayaka可以帮助你实现命令隔离
+    hello world
+
+    ayaka可以帮助实现命令隔离
 '''
 from ayaka import AyakaApp
 
-app = AyakaApp("hello-world")
+# 创建一个应用，起名为hello
+app = AyakaApp("hello")
 
-# 你可以不写帮助
-# app.help
+# 为该应用编写帮助
+app.help = "第一个示例插件"
 
 
-# 桌面状态下
-@app.on_command("hw")
+# 设置打开应用的指令
+@app.on_command("hello")
 async def app_entrance():
+    '''打开hello world应用'''
+    # 打开应用
     await app.start()
-    # app运行后，进入指定状态(state = "world")
+    # 应用打开后，进入 world 状态
     app.set_state("world")
 
 
-# 只有world状态可以退出，其他状态运行该指令均为返回world状态
+# 设置关闭应用的指令
 @app.on_state_command(["exit", "退出"], "*")
 async def app_exit():
+    '''返回到world 或 退出hello world应用'''
+    # 只有world状态时可以关闭应用
     if app.state == "world":
+        # 关闭应用
         await app.close()
+
+    # 若在其他状态下，则先返回到world状态
     else:
         app.set_state("world")
         await app.send("跳转到 world")
 
 
-# 对世界、月亮和太阳打个招呼
-@app.on_state_command("hi", ["world", "moon", "sun"])
+@app.on_state_command(["hi", "hello"], ["world", "moon", "sun"])
 async def hello():
-    await app.send(f"hello,{app.state}!")
+    '''打个招呼'''
+    # 发送hello world/moon/sun
+    await app.send(f"hello, {app.state}!")
 
 
-# 对世界、月亮和太阳来个大比兜
 @app.on_state_command("hit", "world")
 async def hit():
+    '''给世界来个大比兜'''
     await app.send("earthquake")
 
 
 @app.on_state_command("hit", "moon")
 async def hit():
+    '''给月亮来个大比兜'''
     await app.send("moon fall")
 
 
 @app.on_state_command("hit", "sun")
 async def hit():
+    '''给太阳来个大比兜'''
     await app.send("big bang!")
 
 
-# 跳转状态
 @app.on_state_command("jump", "*")
 async def jump_to_somewhere():
+    '''跳转到指定的星球'''
+    # 应用自动解析jump指令所在的消息，提取出其中的参数
     if not app.arg:
         await app.send("没有参数！")
+
     else:
         next_state = str(app.arg)
+
+        # 修改状态
         app.set_state(next_state)
-        await app.send(f"跳转到 [{next_state}]")
+        await app.send(f"跳转到 {next_state}")
